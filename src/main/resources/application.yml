@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: local
+  batch:
+    job:
+      names: ${job.name:NONE}
+
+logging:
+  level:
+    org.springframework.batch: DEBUG
+---
+spring:
+  profiles: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+---
+spring:
+  profiles: mysql
+  datasource:
+    hikari:
+      jdbc-url: # blind
+      username: # blind
+      password: # blind
+      driver-class-name: com.mysql.cj.jdbc.Driver
+---
+
+spring:
+  profiles: server
+  datasource:
+    hikari:
+      jdbc-url: # blind
+      username: worker
+      password: Hackday2018!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+---
+
+path.csv.sample: sample-data.csv
+path.csv.hackday: hackday_sample.csv
+
+---
